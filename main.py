@@ -33,8 +33,8 @@ test = pt.fit_transform(test)
 # establish Keras model
 model = Sequential()
 
-model.add(Dense(20, activation='relu', input_shape=(len(train),12)))
-model.add(Dense(40, activation='relu'))
+model.add(Dense(16, activation='relu', input_shape=(len(train),12)))
+model.add(Dense(32, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 
 #
@@ -46,7 +46,7 @@ model.add(Dense(1, activation='sigmoid'))
 # model.compile(optimizer=optimizers.RMSprop(lr=0.001), loss=losses.binary_crossentropy, metrics=["accuracy"])
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(train,ground_truth_train,batch_size=50,validation_data=(test,ground_truth_test),epochs=30,verbose=1)
+model.fit(train,ground_truth_train,batch_size=10,validation_data=(test,ground_truth_test),epochs=30,verbose=1)
 
 # from keras.models import load_model
 # model=load_model('best_model.17-0.60.h5')
@@ -63,7 +63,7 @@ fpr_keras, tpr_keras, thresholds_keras = roc_curve(ground_truth_test, y_pred_ker
 
 from sklearn.ensemble import RandomForestClassifier
 # Supervised transformation based on random forests
-rf = RandomForestClassifier(max_depth=3, n_estimators=10)
+rf = RandomForestClassifier(max_depth=10, n_estimators=40)
 rf.fit(train, ground_truth_train)
 
 from sklearn.metrics import auc
