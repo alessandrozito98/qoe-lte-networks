@@ -1,3 +1,4 @@
+from pkgutil import extend_path
 from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.model_selection import train_test_split
@@ -8,8 +9,10 @@ import pandas as pd
 
 # scaler = StandardScaler()
 
-basic_train = pd.read_csv('BasicDataset_Training_MRN.csv')
-basic_test = pd.read_csv('BasicDataset_Test_MRN.csv')
+path ='data/'
+
+basic_train = pd.read_csv(path + 'BasicDataset_Training_MRN.csv')
+basic_test = pd.read_csv(path + 'BasicDataset_Test_MRN.csv')
 
 train = basic_train.drop(['User_Satisfaction','Unnamed: 0','Unnamed: 0.1'],axis = 1)
 test = basic_test.drop(['User_Satisfaction','Unnamed: 0','Unnamed: 0.1'],axis = 1)
@@ -78,4 +81,5 @@ plt.xlabel('False positive rate')
 plt.ylabel('True positive rate')
 plt.title('ROC curve')
 plt.legend(loc='best')
+plt.savefig('./roc_curve.png')
 plt.show()
