@@ -6,12 +6,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-basic_train = pd.read_csv('BasicDataset_Training_MRN.csv')
-basic_test = pd.read_csv('BasicDataset_Test_MRN.csv')
+path = 'data/'
 
-new_feature_train = pd.DataFrame(data=(basic_train.Cumulative_Full_Service_Time_LTE/(basic_train.Cumulative_Full_Service_Time_LTE+basic_train.Cumulative_Lim_Service_Time_LTE+basic_train.Cumulative_No_Service_Time_LTE)).round(1),columns=['new_feature'])
+basic_train = pd.read_csv(path + 'BasicDataset_Training_MRN.csv')
+basic_test = pd.read_csv(path + 'BasicDataset_Test_MRN.csv')
+
+
+new_feature_train = pd.DataFrame(data=(basic_train.Cumulative_YoutubeSess_LTE_DL_Volume + basic_train.Cumulative_YoutubeSess_UMTS_DL_Volume) / (basic_train.Cumulative_YoutubeSess_LTE_DL_Time + basic_train.Cumulative_YoutubeSess_UMTS_DL_Time).round(1),columns=['new_feature'])
 new_feature_train['new_feature'].fillna(0,inplace=True)
-new_feature_test = pd.DataFrame(data=(basic_test.Cumulative_Full_Service_Time_LTE/(basic_test.Cumulative_Full_Service_Time_LTE+basic_test.Cumulative_Lim_Service_Time_LTE+basic_test.Cumulative_No_Service_Time_LTE)).round(1),columns=['new_feature'])
+new_feature_test = pd.DataFrame(data=(basic_test.Cumulative_YoutubeSess_LTE_DL_Volume + basic_test.Cumulative_YoutubeSess_UMTS_DL_Volume) / (basic_test.Cumulative_YoutubeSess_LTE_DL_Time + basic_test.Cumulative_YoutubeSess_UMTS_DL_Time).round(1),columns=['new_feature'])
 new_feature_test['new_feature'].fillna(0,inplace=True)
 
 # create new feature CDF
