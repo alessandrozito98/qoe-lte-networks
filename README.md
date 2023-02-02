@@ -32,7 +32,7 @@ python3 main.py
 
 ## Credits
 
-All the documents used ar in the [docs](https://github.com/alessandrozito98/qoe-lte-networks/tree/master/docs)
+All the documents used are in the [docs](https://github.com/alessandrozito98/qoe-lte-networks/tree/master/docs) folder.
 
 
 ## Authors
