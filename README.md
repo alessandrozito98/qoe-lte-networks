@@ -26,7 +26,7 @@ pip3 install -r requirements.txt
 ### Usage
 
 ```bash
-python3 -m src LeggiElettorali/LawName
+python3 main.py
 ``` 
 
 
